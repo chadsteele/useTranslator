@@ -20,9 +20,10 @@ export class TranslationApi {
 
         if (!text) return "";  //if blank, return blank
 
-        text = text || '';
         lang = lang || 'en';
         lang = languageCodes[lang.toLowerCase()] || lang || 'en';
+
+        if (lang === 'en' && text.length === 1) return text;  // don't translate a single letter
 
         const url = "https://cors-anywhere.herokuapp.com/"
             + "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&dt=t"
